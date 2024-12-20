@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { hash } from 'argon2';
 import { AuthDto } from 'src/auth/dto/auth.dto';
 import { PrismaService } from 'src/prisma.service';
@@ -14,6 +14,9 @@ export class UserService {
       where: { id },
       include: { stores: true, favorites: true, orders: true },
     });
+    if (!user) {
+      throw new UnauthorizedException(`Пользователь с id ${id} не найден`);
+    }
     return user;
   }
 
