@@ -30,6 +30,26 @@ export class UserService {
     return user;
   }
 
+  // Сервис, который добавляет или удаляет продукт из избранного у пользователя
+  async toggleFavorite(productId: string, userId: string) {
+    const user = await this.getById(userId);
+
+    const isExists = user.favorites.some(
+      (productId) => productId === productId,
+    );
+
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: {
+        favorites: {
+          [isExists ? 'disconnect' : 'connect']: { id: productId },
+        },
+      },
+    });
+
+    return true;
+  }
+
   // Создание пользователя
   async create(dto: AuthDto) {
     return this.prisma.user.create({
