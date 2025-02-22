@@ -5,9 +5,11 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { StoreModule } from './store/store.module';
+import { ColorModule } from './color/color.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule, StoreModule],
+  imports: [ConfigModule.forRoot(), AuthModule, UserModule, StoreModule, ColorModule, CategoryModule],
   controllers: [AppController],
   providers: [AppService],
 })
