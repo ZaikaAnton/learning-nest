@@ -7,9 +7,10 @@ import { UserModule } from './user/user.module';
 import { StoreModule } from './store/store.module';
 import { ColorModule } from './color/color.module';
 import { CategoryModule } from './category/category.module';
+import { FileModule } from './file/file.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule, StoreModule, ColorModule, CategoryModule],
+  imports: [ConfigModule.forRoot(), AuthModule, UserModule, StoreModule, ColorModule, CategoryModule, FileModule],
   controllers: [AppController],
   providers: [AppService],
 })
